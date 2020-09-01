@@ -15,7 +15,20 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserPosition();
     this.getTrainsData();
+  }
+
+  getUserPosition()
+  {
+    navigator.geolocation.getCurrentPosition(resp => {
+
+        console.log({lng: resp.coords.longitude, lat: resp.coords.latitude});
+      },
+      err => {
+        console.warn(err);
+      });
+
   }
 
   getTrainsData() {
