@@ -19,10 +19,7 @@ export class TrainService {
     var requestOptions = new HttpHeaders({
       'Ocp-Apim-Subscription-Key': '875a6e7eca7c462c94d556d9e4b677f4',
     });
-    // this.httpClient.get<Payload>("https://gateway.apiportal.ns.nl/virtual-train-api/api/vehicle", { headers: requestOptions }).subscribe((res) => {
-    //   console.log(res);
-    // });
-    this.httpClient.get<string>("http://de1api01.reasulus.nl/nsapi/virtual-train-api/api/vehicle").subscribe((res) => {
+    this.httpClient.get<Payload>("https://gateway.apiportal.ns.nl/virtual-train-api/api/vehicle", { headers: requestOptions }).subscribe((res) => {
       console.log(res);
     });
     return null;
