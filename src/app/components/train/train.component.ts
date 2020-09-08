@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Train } from 'src/app/models/Payload';
+import { SimpleTrain } from 'src/app/models/Payload';
+import { TrainService } from 'src/app/services/train.service';
+import { DetailedTrain } from 'src/app/models/detailed-train';
 
 @Component({
   selector: 'app-train',
@@ -9,11 +11,16 @@ import { Train } from 'src/app/models/Payload';
 export class TrainComponent implements OnInit {
 
   @Input()
-  train: Train;
-  
-  constructor() { }
+  train: SimpleTrain;
+  detailedTrain: DetailedTrain;
 
-  ngOnInit(): void {
+  constructor(private trainService: TrainService) { }
+
+  async ngOnInit(){
+    await this.train;
+    this.trainService.getTrain(this.train.ritId).subscribe(data => {
+      this.detailedTrain = data;
+    })
   }
 
 }

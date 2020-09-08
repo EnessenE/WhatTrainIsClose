@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Train } from 'src/app/models/Payload';
+import { SimpleTrain } from 'src/app/models/Payload';
 import { TrainService } from 'src/app/services/train.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { TrainService } from 'src/app/services/train.service';
 })
 export class HomeComponent implements OnInit {
   title = 'WhatTrainIsClose';
-  trains: Train[];
+  trains: SimpleTrain[];
   lat;
   lng;
 
@@ -19,8 +19,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     //this.getUserPosition();
     //testing
-    this.lat = 51.8075292;
-    this.lng = 4.6677689;
+    this.lat = 52.0894;
+    this.lng = 5.1100;
     //
     this.getTrainsData();
   }

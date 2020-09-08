@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainService } from './services/train.service';
-import { PayloadClass, Train } from './models/Payload';
+import { PayloadClass, SimpleTrain } from './models/Payload';
 
 @Component({
   selector: 'app-root',

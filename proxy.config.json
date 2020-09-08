@@ -1,0 +1,8 @@
+{
+    "/virtual-train-api/*":{
+        "target": "https://gateway.apiportal.ns.nl",
+        "secure": true,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

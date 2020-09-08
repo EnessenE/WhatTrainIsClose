@@ -8,10 +8,10 @@ export interface Links {
 }
 
 export interface PayloadClass {
-    treinen: Train[];
+    treinen: SimpleTrain[];
 }
 
-export interface Train {
+export interface SimpleTrain {
     treinNummer:               number;
     ritId:                     string;
     lat:                       number;
