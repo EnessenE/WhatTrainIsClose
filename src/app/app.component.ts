@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainService } from './services/train.service';
-import { CollectionOfPosition } from './models/train';
+import { PayloadClass, Train } from './models/Payload';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,9 @@ import { CollectionOfPosition } from './models/train';
 })
 export class AppComponent implements OnInit {
   title = 'WhatTrainIsClose';
-  trains: CollectionOfPosition;
+  trains: Train[];
+  lat;
+  lng;
 
   constructor(private trainService: TrainService) {
   }
@@ -22,7 +24,8 @@ export class AppComponent implements OnInit {
   getUserPosition()
   {
     navigator.geolocation.getCurrentPosition(resp => {
-
+        this.lat = resp.coords.latitude;
+        this.lng = resp.coords.longitude;
         console.log({lng: resp.coords.longitude, lat: resp.coords.latitude});
       },
       err => {
@@ -32,9 +35,9 @@ export class AppComponent implements OnInit {
   }
 
   getTrainsData() {
-    this.trainService.getTrains().subscribe(
+    this.trainService.getTrains(this.lat, this.lng).subscribe(
       data => {
-        this.trains = data;
+        this.trains = data.payload.treinen;
       }
     );
   }

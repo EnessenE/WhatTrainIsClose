@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Train } from 'src/app/models/train';
+import { Train } from 'src/app/models/Payload';
 
 @Component({
   selector: 'app-train',
