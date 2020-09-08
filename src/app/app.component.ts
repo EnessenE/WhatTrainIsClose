@@ -7,38 +7,6 @@ import { PayloadClass, Train } from './models/Payload';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'WhatTrainIsClose';
-  trains: Train[];
-  lat;
-  lng;
-
-  constructor(private trainService: TrainService) {
-  }
-
-  ngOnInit(): void {
-    this.getUserPosition();
-    this.getTrainsData();
-  }
-
-  getUserPosition()
-  {
-    navigator.geolocation.getCurrentPosition(resp => {
-        this.lat = resp.coords.latitude;
-        this.lng = resp.coords.longitude;
-        console.log({lng: resp.coords.longitude, lat: resp.coords.latitude});
-      },
-      err => {
-        console.warn(err);
-      });
-
-  }
-
-  getTrainsData() {
-    this.trainService.getTrains(this.lat, this.lng).subscribe(
-      data => {
-        this.trains = data.payload.treinen;
-      }
-    );
-  }
 }

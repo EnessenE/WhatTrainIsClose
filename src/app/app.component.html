@@ -1,10 +1,1 @@
-<p> All trains: </p>
-
-<ng-template [ngIf]="!trains" [ngIfElse]="loaded">
-  <p>Loading train data...</p>
-</ng-template>
-<ng-template #loaded>
-
-<div *ngFor="let train of trains; let i = index">
-  <app-train [train]=train></app-train>
-</div></ng-template>
+<router-outlet></router-outlet>
