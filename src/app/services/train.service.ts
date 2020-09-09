@@ -9,7 +9,7 @@ import { DetailedTrain, DetailedPayload } from '../models/detailed-train';
 })
 export class TrainService {
 
-  getHeaders(){
+  getHeaders() {
     return new HttpHeaders({
       'Ocp-Apim-Subscription-Key': '875a6e7eca7c462c94d556d9e4b677f4',
     });
@@ -20,16 +20,24 @@ export class TrainService {
     return Observable.throw(error.message || "server error.");
   }
 
-  public getTrains(lat, lng): Observable<Payload> {
+  public getTrains(lat, lng, range): Observable<Payload> {
     var requestOptions = new HttpHeaders({
       'Ocp-Apim-Subscription-Key': '875a6e7eca7c462c94d556d9e4b677f4',
     });
-    return this.httpClient.get<Payload>("/virtual-train-api/api/vehicle?lat="+lat+"&lng="+lng+"&distance=5000", { headers: this.getHeaders() });
+    return this.httpClient.get<Payload>("/virtual-train-api/api/vehicle?lat=" + lat + "&lng=" + lng + "&distance="+range, { headers: this.getHeaders() });
   }
 
   public getTrain(traincode): Observable<DetailedTrain> {
 
-    return this.httpClient.get<DetailedTrain>("/virtual-train-api/api/v1/trein/"+traincode, { headers: this.getHeaders() });
+    return this.httpClient.get<DetailedTrain>("/virtual-train-api/api/v1/trein/" + traincode, { headers: this.getHeaders() });
   }
 
+
+  public getTrainsOnIds(ids: string[]): Observable<DetailedTrain[]> {
+    var final = "";
+    ids.forEach(element => {
+      final = final + ", ";
+    });
+    return this.httpClient.get<DetailedTrain[]>("/virtual-train-api/api/v1/trein?ids=" + final + "&all=false", { headers: this.getHeaders() });
+  }
 }

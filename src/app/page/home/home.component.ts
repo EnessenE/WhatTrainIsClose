@@ -19,31 +19,42 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     //this.getUserPosition();
     //testing
-    this.lat = 52.0894;
-    this.lng = 5.1100;
+    this.lat = 51.45193;
+    this.lng = 5.455077;
     //
-    this.getTrainsData();
+    this.loop();
   }
 
-  getUserPosition()
-  {
+  async loop() {
+    while (true) {
+      console.log("Loading data");
+      this.getTrainsData();
+      await this.delay(5000);
+    }
+  }
+
+  getUserPosition() {
     navigator.geolocation.getCurrentPosition(resp => {
-        this.lat = resp.coords.latitude;
-        this.lng = resp.coords.longitude;
-        console.log({lng: resp.coords.longitude, lat: resp.coords.latitude});
-      },
+      this.lat = resp.coords.latitude;
+      this.lng = resp.coords.longitude;
+      console.log({ lng: resp.coords.longitude, lat: resp.coords.latitude });
+    },
       err => {
         console.warn(err);
       });
 
   }
 
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   getTrainsData() {
-    this.trainService.getTrains(this.lat, this.lng).subscribe(
+    this.trainService.getTrains(this.lat, this.lng, 1000).subscribe(
       data => {
         this.trains = data.payload.treinen;
       },
-      error =>{
+      error => {
         console.warn(error);
       }
     );
