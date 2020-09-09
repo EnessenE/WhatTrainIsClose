@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { TrainComponent } from './components/train/train.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './page/home/home.component';
+import { DisruptionComponent } from './components/disruption/disruption.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TrainComponent,
-    HomeComponent
+    HomeComponent,
+    DisruptionComponent
   ],
   imports: [
     BrowserModule,

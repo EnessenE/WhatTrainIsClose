@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { PayloadClass, Payload } from '../models/Payload';
 import { DetailedTrain, DetailedPayload } from '../models/detailed-train';
+import { DisruptionPayload } from '../models/disruption';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,9 @@ export class TrainService {
       final = final + ", ";
     });
     return this.httpClient.get<DetailedTrain[]>("/virtual-train-api/api/v1/trein?ids=" + final + "&all=false", { headers: this.getHeaders() });
+  }
+
+  public getDisruptionsOnStation(station: string): Observable<DisruptionPayload> {
+    return this.httpClient.get<DisruptionPayload>("/reisinformatie-api/api/v2/disruptions/station/" + station, { headers: this.getHeaders() });
   }
 }

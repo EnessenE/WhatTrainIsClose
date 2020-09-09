@@ -8,3 +8,14 @@
     <app-train [train]=train></app-train>
   </div>
 </ng-template>
+
+
+<ng-template [ngIf]="!disruptions" [ngIfElse]="loadedDis">
+  <!-- <p>No disruptions</p> -->
+</ng-template>
+
+<ng-template #loadedDis>
+  <div *ngFor="let item of disruptions; let i = index">
+    <app-disruption [disruption]=item></app-disruption>
+  </div>  
+</ng-template>

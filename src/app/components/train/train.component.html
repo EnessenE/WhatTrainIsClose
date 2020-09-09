@@ -3,9 +3,12 @@
 </ng-template>
 
 <ng-template #loaded>
-    <p>Thats a train!</p> 
-    <p>[{{detailedTrain.vervoerder}}]{{train.type}} ({{train.ritId}}) with a speed of {{train.snelheid}} KM/u towards {{detailedTrain.materieeldelen[0].eindbestemming}}</p>
-    <li  class="Cars" *ngFor="let item of detailedTrain.materieeldelen;">
-        <img width="300px" src="{{item.afbeelding}}"/>
-    </li>
+    <div class="alert alert-dark" role="alert">
+        <p>Thats a train!</p>
+        <p>[{{detailedTrain.vervoerder}}]{{train.type}} ({{train.ritId}}) with a speed of {{train.snelheid}} KM/u
+            towards {{detailedTrain.materieeldelen[0].eindbestemming}}</p>
+        <li class="Cars" *ngFor="let item of detailedTrain.materieeldelen;">
+            <img height="30px" width="auto" src="{{item.afbeelding}}" />
+        </li>
+    </div>
 </ng-template>

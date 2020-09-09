@@ -20,6 +20,7 @@ export class TrainComponent implements OnInit {
     await this.train;
     this.trainService.getTrain(this.train.ritId).subscribe(data => {
       this.detailedTrain = data;
+      console.log(data);
     })
   }
 

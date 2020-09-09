@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SimpleTrain } from 'src/app/models/Payload';
 import { TrainService } from 'src/app/services/train.service';
+import { Disruption } from 'src/app/models/disruption';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { TrainService } from 'src/app/services/train.service';
 export class HomeComponent implements OnInit {
   title = 'WhatTrainIsClose';
   trains: SimpleTrain[];
+  disruptions: Disruption[];
   lat;
   lng;
 
@@ -18,11 +20,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     //this.getUserPosition();
-    //testing
+    //TQ
     this.lat = 51.45193;
     this.lng = 5.455077;
+    //DDR
+    // this.lat = 51.807253;
+    // this.lng = 4.667997;
     //
     this.loop();
+    this.disrupLoop();
   }
 
   async loop() {
@@ -31,6 +37,25 @@ export class HomeComponent implements OnInit {
       this.getTrainsData();
       await this.delay(5000);
     }
+  }
+
+  async disrupLoop() {
+    while (true) {
+      console.log("Loading disruptions");
+      this.getDisruptions();
+      await this.delay(5000);
+    }
+  }
+
+  getDisruptions(){
+    this.trainService.getDisruptionsOnStation("EHS").subscribe(
+      data => {
+        this.disruptions = data.payload;
+      },
+      error => {
+        console.warn(error);
+      }
+    );
   }
 
   getUserPosition() {
@@ -50,7 +75,7 @@ export class HomeComponent implements OnInit {
   }
 
   getTrainsData() {
-    this.trainService.getTrains(this.lat, this.lng, 1000).subscribe(
+    this.trainService.getTrains(this.lat, this.lng, 2500).subscribe(
       data => {
         this.trains = data.payload.treinen;
       },
