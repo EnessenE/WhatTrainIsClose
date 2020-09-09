@@ -4,11 +4,16 @@
 
 <ng-template #loaded>
     <div class="alert alert-dark" role="alert">
-        <p>Thats a train!</p>
-        <p>[{{detailedTrain.vervoerder}}]{{train.type}} ({{train.ritId}}) with a speed of {{train.snelheid}} KM/u
-            towards {{detailedTrain.materieeldelen[0].eindbestemming}}</p>
+        <div *ngIf="((detailedTrain.materieeldelen[0] && detailedTrain.materieeldelen[0].materieelnummer == 9556) || (detailedTrain.materieeldelen[1] && detailedTrain.materieeldelen[1].materieelnummer == 9556))">
+            <h1 style="color:green;" >LOOK ITS GREEN!</h1>
+        </div>
+        <p>[{{detailedTrain.vervoerder}}] {{train.type}} with a speed of {{train.snelheid}} KM/u
+            towards {{detailedTrain.materieeldelen[0].eindbestemming || "somewhere, but where we dont know!"}}</p>
         <li class="Cars" *ngFor="let item of detailedTrain.materieeldelen;">
             <img height="30px" width="auto" src="{{item.afbeelding}}" />
         </li>
+        <p class="tinytext">{{train.ritId}} - <span *ngFor="let item of detailedTrain.materieeldelen;"> {{item.type}}({{item.materieelnummer}})</span>
+
+        </p> 
     </div>
 </ng-template>
