@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
   }
 
   getTrainsData() {
-    this.trainService.getTrains(this.lat, this.lng, 2500).subscribe(
+    this.trainService.getTrains(this.lat, this.lng, 5000).subscribe(
       data => {
         this.trains = data.payload.treinen;
       },
