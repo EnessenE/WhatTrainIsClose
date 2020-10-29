@@ -1,6 +1,9 @@
 # WhatTrainIsClose
+This project allows you to see what NS trains are driving nearby you. All API keys listed inside have been disabled and no support is given.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
+
 
 ## Development server
 
