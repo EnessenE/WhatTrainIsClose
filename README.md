@@ -2,7 +2,7 @@
 This project allows you to see what NS trains are driving nearby you. All API keys listed inside have been disabled and no support is given.
 This originated by me being distracted by trains driving by Strijp TQ in Eindhoven.
 
-Fill your NS API Key in /src/enviroments/enviroment.ts
+Fill your NS API Key and other info about your location in /src/enviroments/enviroment.ts
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
 
