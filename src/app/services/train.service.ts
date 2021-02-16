@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { PayloadClass, Payload } from '../models/Payload';
 import { DetailedTrain, DetailedPayload } from '../models/detailed-train';
 import { DisruptionPayload } from '../models/disruption';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class TrainService {
 
   getHeaders() {
     return new HttpHeaders({
-      'Ocp-Apim-Subscription-Key': '875a6e7eca7c462c94d556d9e4b677f4',
+      'Ocp-Apim-Subscription-Key': environment.nsApiKey,
     });
   }
   constructor(public httpClient: HttpClient) { }
@@ -22,9 +23,6 @@ export class TrainService {
   }
 
   public getTrains(lat, lng, range): Observable<Payload> {
-    var requestOptions = new HttpHeaders({
-      'Ocp-Apim-Subscription-Key': '875a6e7eca7c462c94d556d9e4b677f4',
-    });
     return this.httpClient.get<Payload>("/virtual-train-api/api/vehicle?lat=" + lat + "&lng=" + lng + "&distance="+range, { headers: this.getHeaders() });
   }
 
